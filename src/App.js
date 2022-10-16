@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import AirQualityMonitoring from "./Components/AirQualityMonitoring";
+import EnergyMonitoring from "./Components/EnergyMonitoring";
+import Insights from "./Components/Insights";
+import Navbar from "./Components/Navbar";
+import NavbarResources from "./Components/NavbarResources";
+import WaterMonitoring from "./Components/WaterMonitoring";
+import WeatherMonitoring from "./Components/WeatherMonitoring";
 
 function App() {
+  const [verticalType, setCurrentVertical] = useState("Insights");
+  console.log(verticalType);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="bg-black">
+        <Navbar />
+        <NavbarResources
+          setCurrentVertical={setCurrentVertical}
+          verticalType={verticalType}
+        />
+        {verticalType === "Insights" && <Insights />}
+        {verticalType === "Energy Monitoring" && <EnergyMonitoring />}
+        {verticalType === "Water Monitoring" && <WaterMonitoring />}
+        {verticalType === "Weather Monitoring" && <WeatherMonitoring />}
+        {verticalType === "Air Quality Monitoring" && <AirQualityMonitoring />}
+      </div>
+    </>
   );
 }
 
