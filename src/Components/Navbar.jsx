@@ -11,7 +11,7 @@ function Navbar() {
           <img src={scrcLogo} className="w-24 h-16" />
         </div>
         <div>
-          <p className="text-amber-400 text-4xl mt-1 mr-32">IUDX DASHBOARD</p>
+          <p className="text-blue-400 text-4xl mt-1 mr-32">DASHBOARD</p>
         </div>
         <div className="mt-1">
           <img src={iudxLogo} />

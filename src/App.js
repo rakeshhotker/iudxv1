@@ -1,14 +1,14 @@
 import { useState } from "react";
 import AirQualityMonitoring from "./Components/AirQualityMonitoring";
 import EnergyMonitoring from "./Components/EnergyMonitoring";
-import Insights from "./Components/Insights";
+import Summary from "./Components/Summary";
 import Navbar from "./Components/Navbar";
 import NavbarResources from "./Components/NavbarResources";
 import WaterMonitoring from "./Components/WaterMonitoring";
 import WeatherMonitoring from "./Components/WeatherMonitoring";
 
 function App() {
-  const [verticalType, setCurrentVertical] = useState("Insights");
+  const [verticalType, setCurrentVertical] = useState("Summary");
   console.log(verticalType);
   return (
     <>
@@ -18,7 +18,7 @@ function App() {
           setCurrentVertical={setCurrentVertical}
           verticalType={verticalType}
         />
-        {verticalType === "Insights" && <Insights />}
+        {verticalType === "Summary" && <Summary />}
         {verticalType === "Energy Monitoring" && <EnergyMonitoring />}
         {verticalType === "Water Monitoring" && <WaterMonitoring />}
         {verticalType === "Weather Monitoring" && <WeatherMonitoring />}

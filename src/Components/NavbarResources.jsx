@@ -5,7 +5,7 @@ function NavbarResources({ setCurrentVertical, verticalType }) {
   return (
     <div className="flex justify-evenly mt-5">
       <VerticalType
-        verticalName={"Insights"}
+        verticalName={"Summary"}
         setCurrentVertical={setCurrentVertical}
         verticalType={verticalType}
       />
