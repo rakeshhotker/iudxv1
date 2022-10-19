@@ -3,7 +3,7 @@ import React from "react";
 function WaterMonitoring() {
   return (
     <>
-      <div className="grid grid-cols-3 grid-rows-3 gap-3 h-max mt-10 overflow-y-scroll">
+      <div className="grid grid-cols-3 grid-rows-3 gap-2 mt-10 justify-items-center h-screen">
         <iframe
           src="https://smartcitylivinglab.iiit.ac.in/grafana/d-solo/7hXZ52I4z/iudx-dashboard-panels?orgId=3&panelId=39"
           width="450"

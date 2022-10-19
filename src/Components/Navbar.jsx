@@ -5,7 +5,7 @@ import iudxLogo from "../images/IUDX_logo_white.png";
 function Navbar() {
   return (
     <>
-      <div className="w-screen h-24  flex justify-evenly items-center border-b-2">
+      <div className="w-screen h-24  flex justify-evenly items-center border-b-2 justify-items-center">
         <div className="flex w-1/4 mt-1">
           <img src={iiithLogo} className="w-24 h-16" />
           <img src={scrcLogo} className="w-24 h-16" />

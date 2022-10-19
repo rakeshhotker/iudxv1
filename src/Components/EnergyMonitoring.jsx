@@ -3,7 +3,7 @@ import React from "react";
 function EnergyMonitoring() {
   return (
     <>
-      <div className="grid gap-2 grid-cols-3 grid-rows-2 mt-10 h-screen overflow-y-scroll">
+      <div className="grid gap-0 grid-cols-3 grid-rows-2 mt-10 h-screen justify-items-center">
         <iframe
           src="https://smartcitylivinglab.iiit.ac.in/grafana/d-solo/7hXZ52I4z/iudx-dashboard-panels?orgId=3&panelId=16"
           width="450"
