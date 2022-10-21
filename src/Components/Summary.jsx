@@ -3,7 +3,7 @@ import React from "react";
 function Summary() {
   return (
     <>
-      <div className="flex justify-evenly mt-10 h-screen">
+      <div className="flex justify-evenly mt-16 h-screen">
         <div className="grid grid-row-3 grid-cols-2 gap-2 h-full">
           <iframe
             src="https://smartcitylivinglab.iiit.ac.in/grafana/d-solo/7hXZ52I4z/iudx-dashboard-panels?orgId=3&panelId=8"
