@@ -1,23 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Home from "./components/Home";
+import Sidebar from "./components/Sidebar";
 
 function App() {
+  const [vertical,setVertical]=useState("Summary")
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex flex-row">
+      <Sidebar currentvertical={vertical} setVertical={setVertical} className="basis-1/3"/>
+      <Home currentvertical={vertical}/>
     </div>
   );
 }
