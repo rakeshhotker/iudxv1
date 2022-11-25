@@ -29,7 +29,7 @@ const Mycharts=()=>{
   const options={
     chart:{id:'bar-chart'},
     xaxis:{
-      categories:date
+      categories:date,
     },
     plotOptions:{
       bar:{
@@ -39,20 +39,21 @@ const Mycharts=()=>{
   }
   return(
     <div>
-      <Chart options={options} series={series} type="line" width="800px"/>
+      <Chart options={options} series={series} type="line" width="800px" height="350px"/>
     </div>
   )
 }
 function AirQualityMonitoring() {
   return (
     <>
-    <div className='flex flex-col ml-10'>
-      <h1 className='text-center'>AirQualityMonitoring</h1>
-      <div>
+    <div className='flex flex-col ml-10 h-screen'>
+      <h1 className='text-center'>AirQualityMonitoring(Instantaneous)</h1>
+      <div className='h-2/5 overflow-y-auto'>
       <AirQualityMonitoringInstant/>
       </div>
       <div className='flex flex-col items-center justify-center w-full'>
         <h1 className='text-center'>Temporal display(AQI)</h1>
+        
         <Mycharts/>
       </div>
     </div>
