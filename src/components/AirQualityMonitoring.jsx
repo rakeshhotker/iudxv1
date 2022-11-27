@@ -8,14 +8,12 @@ const Mycharts = () => {
   useEffect(() => {
     const getData = async () => {
       const url =
-        "https://iudx-rs-onem2m.iiit.ac.in/ngsi-ld/v1/temporal/entities?id=research.iiit.ac.in/4786f10afbf48ed5c8c7be9b4d38b33ca16c1d9a/iudx-rs-onem2m.iiit.ac.in/iiith-water-monitoring/WM-WD-VN00-00&limit=2000&time=2022-11-17T17:50:00Z&timerel=during&endtime=2022-11-24T17:50:00Z";
+        "https://iudx-rs-onem2m.iiit.ac.in/ngsi-ld/v1/temporal/entities?id=research.iiit.ac.in/4786f10afbf48ed5c8c7be9b4d38b33ca16c1d9a/iudx-rs-onem2m.iiit.ac.in/iiith-env-aqm/AQ-AN00-00&limit=500&time=2022-11-17T17:50:00Z&timerel=during&endtime=2022-11-24T17:50:00Z";
       try {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data["results"]);
-        setaqi(
-          data["results"]?.map((item) => item.tdsCompensated["instValue"])
-        );
+        setaqi(data["results"]?.map((item) => item.airQualityIndex));
         setDate(
           data["results"]?.map((item) => item.observationDateTime.split("T")[0])
         );
