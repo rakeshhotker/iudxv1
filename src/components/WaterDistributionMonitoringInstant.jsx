@@ -1,11 +1,12 @@
 import React from "react";
 
-function WaterMonitoringInstant() {
+function WaterDistributionMonitoringInstant() {
   const panel_list = [39, 43, 42, 44, 40, 45, 41, 46, 47];
+  const panel_list1=[40,41,42];
   return (
     <>
       <div className="grid h-screen grid-cols-3 grid-rows-3 gap-2 mt-16 justify-items-center">
-        {panel_list.map((panelId) => (
+        {panel_list1.map((panelId) => (
           <iframe
             src={`https://analytics.smartcitylivinglab.iiit.ac.in/d-solo/7hXZ52I4z/iudx-dashboard-panels?kiosk=&orgId=1&panelId=${panelId}`}
             width="350"
@@ -18,4 +19,4 @@ function WaterMonitoringInstant() {
   );
 }
 
-export default WaterMonitoringInstant;
+export default WaterDistributionMonitoringInstant;

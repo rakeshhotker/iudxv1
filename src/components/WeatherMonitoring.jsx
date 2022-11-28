@@ -49,7 +49,7 @@ const Mycharts = () => {
         options={options}
         series={series}
         type="line"
-        width="800px"
+        width="1000px"
         height="350px"
       />
     </div>

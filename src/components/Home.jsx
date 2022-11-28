@@ -10,7 +10,7 @@ import WeatherMonitoring from "./WeatherMonitoring";
 function Home({ currentvertical }) {
   return (
     <>
-      {currentvertical == "Summary" && <Summary />}
+      {/* {currentvertical == "Summary" && <Summary />} */}
       {currentvertical == "AirQualityMonitoring" && <AirQualityMonitoring />}
       {currentvertical == "WeatherMonitoring" && <WeatherMonitoring />}
       {currentvertical == "WaterDistributionMonitoring" && (

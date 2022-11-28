@@ -2,7 +2,7 @@ import React from "react";
 
 function Sidebar({ currentvertical, setVertical }) {
   const verticals = [
-    "Summary",
+    // "Summary",
     "AirQualityMonitoring",
     "WeatherMonitoring",
     "WaterDistributionMonitoring",
