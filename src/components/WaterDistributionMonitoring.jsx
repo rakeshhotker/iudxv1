@@ -1,4 +1,4 @@
-import WaterMonitoringInstant from "./WaterMonitoringInstant";
+import WaterDistributionMonitoringInstant from "./WaterDistributionMonitoringInstant";
 import React, { useEffect, useState } from "react";
 
 import Chart from "react-apexcharts";
@@ -54,13 +54,15 @@ const Mycharts = ({ nodeid }) => {
     </div>
   );
 };
-function WaterMonitoring() {
+function WaterDistributionMonitoring() {
   return (
     <>
       <div className="flex flex-col h-screen ml-10">
-        <h1 className="text-center">WaterMonitoring(Instantaneous)</h1>
+        <h1 className="text-center">
+          WaterDistributionMonitoring(Instantaneous)
+        </h1>
         <div className="overflow-y-auto h-2/5">
-          <WaterMonitoringInstant />
+          <WaterDistributionMonitoringInstant />
         </div>
         <div className="flex flex-col items-center justify-center w-full">
           <label
@@ -88,4 +90,4 @@ function WaterMonitoring() {
   );
 }
 
-export default WaterMonitoring;
+export default WaterDistributionMonitoring;
