@@ -57,43 +57,47 @@ function WaterFlowMonitoring() {
   return (
     <>
       <div className="flex flex-col h-screen ml-10">
-        <h1 className="text-center">WaterFlowMonitoring(Instantaneous)</h1>
-        <div className="flex justify-evenly">
-          <select
-            onChange={(e) => setNode(e.target.value)}
-            id="nodeid"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option disabled selected>
-              Choose a NodeId
-            </option>
-            <option value="WM-WF-VN01-00">WM-WF-VN01-00</option>
-            <option value="WM-WF-PH01-00">WM-WF-PH01-00</option>
-            <option value="WM-WF-PH03-00">WM-WF-PH03-00</option>
-            <option value="WM-WF-PH03-01">WM-WF-PH03-01</option>
-            <option value="WM-WF-PH03-03">WM-WF-PH03-03</option>
-            <option value="WM-WF-PH03-02">WM-WF-PH03-02</option>
-          </select>
-          <select
-            onChange={(e) => setParameter(e.target.value)}
-            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/5 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          >
-            <option disabled selected>
-              Choose a Parameter
-            </option>
-            <option value="waterFlowTotal">Total Water Flow</option>
-            <option value="waterFlowRate">Water Flow Rate</option>
-            <option value="waterPressure">Water Pressure</option>
-            <option value="waterPressureVoltage">Water Pressure Voltage</option>
-          </select>
-        </div>
-        <div className="overflow-y-auto h-2/5">
+        <h1 className="mt-1 text-2xl text-center">
+          WaterFlowMonitoring(Instantaneous)
+        </h1>
+        <div className="overflow-y-auto h-3/6">
           <WaterFlowMonitoringInstant />
         </div>
         <div className="flex flex-col items-center justify-center w-full">
-          <h1 className="text-center">
+          <h1 className="text-xl text-center">
             Temporal display({parameter}){node}
           </h1>
+          <div className="flex w-full mt-2 justify-evenly">
+            <select
+              onChange={(e) => setNode(e.target.value)}
+              id="nodeid"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option disabled selected>
+                Choose a NodeId
+              </option>
+              <option value="WM-WF-VN01-00">WM-WF-VN01-00</option>
+              <option value="WM-WF-PH01-00">WM-WF-PH01-00</option>
+              <option value="WM-WF-PH03-00">WM-WF-PH03-00</option>
+              <option value="WM-WF-PH03-01">WM-WF-PH03-01</option>
+              <option value="WM-WF-PH03-03">WM-WF-PH03-03</option>
+              <option value="WM-WF-PH03-02">WM-WF-PH03-02</option>
+            </select>
+            <select
+              onChange={(e) => setParameter(e.target.value)}
+              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/5 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            >
+              <option disabled selected>
+                Choose a Parameter
+              </option>
+              <option value="waterFlowTotal">Total Water Flow</option>
+              <option value="waterFlowRate">Water Flow Rate</option>
+              <option value="waterPressure">Water Pressure</option>
+              <option value="waterPressureVoltage">
+                Water Pressure Voltage
+              </option>
+            </select>
+          </div>
           <Mycharts nodeid={node} parameter={parameter} />
         </div>
       </div>
