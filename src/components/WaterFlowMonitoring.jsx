@@ -1,10 +1,9 @@
-
 import React, { useEffect, useState } from "react";
 
 import Chart from "react-apexcharts";
 import WaterFlowMonitoringInstant from "./WaterFlowMonitoringInstant";
-const Mycharts = ({ nodeid }) => {
-  const [waterFlowTotal, setwaterflowTotal] = useState([]);
+const Mycharts = ({ nodeid, parameter }) => {
+  const [param, setParam] = useState([]);
   const [date, setDate] = useState([]);
   useEffect(() => {
     const getData = async () => {
@@ -13,9 +12,7 @@ const Mycharts = ({ nodeid }) => {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data["results"]);
-        setwaterflowTotal(
-          data["results"]?.map((item) => item.waterFlowTotal["instValue"])
-        );
+        setParam(data["results"]?.map((item) => item[parameter]["instValue"]));
         setDate(
           data["results"]?.map((item) => item.observationDateTime.split("T")[0])
         );
@@ -24,11 +21,11 @@ const Mycharts = ({ nodeid }) => {
       }
     };
     getData();
-  }, [nodeid]);
+  }, [nodeid, parameter]);
   const series = [
     {
-      name: "Total Water flow",
-      data: waterFlowTotal,
+      name: parameter,
+      data: param,
     },
   ];
   const options = {
@@ -55,23 +52,21 @@ const Mycharts = ({ nodeid }) => {
   );
 };
 function WaterFlowMonitoring() {
-  const [node,setNode]=useState("WM-WF-PH03-02")
+  const [node, setNode] = useState("WM-WF-PH03-02");
+  const [parameter, setParameter] = useState("waterFlowTotal");
   return (
     <>
       <div className="flex flex-col h-screen ml-10">
-        <h1 className="text-center">
-          WaterFlowMonitoring(Instantaneous)
-        </h1>
-        <div className="overflow-y-auto h-2/5">
-          <WaterFlowMonitoringInstant />
-        </div>
-        <div className="flex flex-col items-center justify-center w-full">
+        <h1 className="text-center">WaterFlowMonitoring(Instantaneous)</h1>
+        <div className="flex justify-evenly">
           <select
-            onChange={(e)=>setNode(e.target.value)}
+            onChange={(e) => setNode(e.target.value)}
             id="nodeid"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/5 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
-            <option disabled selected>Choose a NodeId</option>
+            <option disabled selected>
+              Choose a NodeId
+            </option>
             <option value="WM-WF-VN01-00">WM-WF-VN01-00</option>
             <option value="WM-WF-PH01-00">WM-WF-PH01-00</option>
             <option value="WM-WF-PH03-00">WM-WF-PH03-00</option>
@@ -79,9 +74,27 @@ function WaterFlowMonitoring() {
             <option value="WM-WF-PH03-03">WM-WF-PH03-03</option>
             <option value="WM-WF-PH03-02">WM-WF-PH03-02</option>
           </select>
-
-          <h1 className="text-center">Temporal display(Total Water Flow){node}</h1>
-          <Mycharts nodeid={node} />
+          <select
+            onChange={(e) => setParameter(e.target.value)}
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/5 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          >
+            <option disabled selected>
+              Choose a Parameter
+            </option>
+            <option value="waterFlowTotal">Total Water Flow</option>
+            <option value="waterFlowRate">Water Flow Rate</option>
+            <option value="waterPressure">Water Pressure</option>
+            <option value="waterPressureVoltage">Water Pressure Voltage</option>
+          </select>
+        </div>
+        <div className="overflow-y-auto h-2/5">
+          <WaterFlowMonitoringInstant />
+        </div>
+        <div className="flex flex-col items-center justify-center w-full">
+          <h1 className="text-center">
+            Temporal display({parameter}){node}
+          </h1>
+          <Mycharts nodeid={node} parameter={parameter} />
         </div>
       </div>
     </>
