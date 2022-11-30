@@ -7,7 +7,11 @@ const Mycharts = ({ nodeid, parameter }) => {
   const [date, setDate] = useState([]);
   useEffect(() => {
     const getData = async () => {
-      const url = `https://iudx-rs-onem2m.iiit.ac.in/ngsi-ld/v1/temporal/entities?id=research.iiit.ac.in/4786f10afbf48ed5c8c7be9b4d38b33ca16c1d9a/iudx-rs-onem2m.iiit.ac.in/iiith-env-aqm/${nodeid}&limit=500&time=2022-11-17T17:50:00Z&timerel=during&endtime=2022-11-24T17:50:00Z`;
+      var enddate = new Date();
+      var endstring=enddate.toISOString().substring(0,10)
+      var startdate=new Date(new Date().setDate(new Date().getDate()-7))
+      var startdatestring=startdate.toISOString().substring(0,10)
+      const url = `https://iudx-rs-onem2m.iiit.ac.in/ngsi-ld/v1/temporal/entities?id=research.iiit.ac.in/4786f10afbf48ed5c8c7be9b4d38b33ca16c1d9a/iudx-rs-onem2m.iiit.ac.in/iiith-env-aqm/${nodeid}&limit=500&time=${startdatestring}T17:50:00Z&timerel=during&endtime=${endstring}T17:50:00Z`;
       try {
         const response = await fetch(url);
         const data = await response.json();
@@ -22,6 +26,7 @@ const Mycharts = ({ nodeid, parameter }) => {
         setDate(
           data["results"]?.map((item) => item.observationDateTime.split("T")[0])
         );
+        console.log(param.length===date.length)
       } catch (error) {
         console.log(error);
       }
@@ -36,6 +41,7 @@ const Mycharts = ({ nodeid, parameter }) => {
   ];
   const options = {
     chart: { id: "bar-chart" },
+    colors:['#b84644'],
     xaxis: {
       categories: date.reverse(),
     },
@@ -63,15 +69,15 @@ function AirQualityMonitoring() {
   return (
     <>
       <div className="flex flex-col h-screen ml-10">
-        <h1 className="mt-1 text-2xl text-center">
+        <h1 className="mt-1 text-2xl text-center text-blue-500">
           AirQualityMonitoring(Instantaneous)
         </h1>
         <div className="overflow-y-auto h-3/6">
           <AirQualityMonitoringInstant />
         </div>
         <div className="flex flex-col items-center justify-center w-full mt-4">
-          <h1 className="text-xl text-center">
-            Temporal display({parameter}){node}
+          <h1 className="text-xl text-center text-blue-500">
+            Weekly data({parameter})&nbsp;{node}
           </h1>
           <div className="flex flex-row w-full mt-2 justify-evenly">
             <select

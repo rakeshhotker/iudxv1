@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Home from "./components/Home";
 import Sidebar from "./components/Sidebar";
-
+import iudxLogo from "./images/iudx-ideal.png"
 function App() {
   const [vertical,setVertical]=useState("AirQualityMonitoring")
   return (
