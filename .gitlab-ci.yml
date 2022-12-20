@@ -42,13 +42,12 @@
         tag=":$CI_COMMIT_REF_SLUG"
         echo "Running on branch '$CI_COMMIT_BRANCH': tag = $tag"
       fi
-    - docker build --pull -t "$CI_REGISTRY_IMAGE/$IMAGE_NAME${tag}" --tag $CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/$IMAGE_NAME:latest $DOCKERFILE_PATH 
+    - docker build --pull -t "$CI_REGISTRY_IMAGE/$IMAGE_NAME${tag}" --tag $CI_REGISTRY_IMAGE/$IMAGE_NAME:$CI_COMMIT_SHA --tag $CI_REGISTRY_IMAGE/$IMAGE_NAME:latest $DOCKERFILE_PATH
     - docker push "$CI_REGISTRY_IMAGE/$IMAGE_NAME${tag}"
     - docker push $CI_REGISTRY_IMAGE/$IMAGE_NAME:latest
   # Run this job in a branch where a Dockerfile exists
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
-      exists:
+    - exists:
         - Dockerfile
 
 build:iudx-dashboard:
