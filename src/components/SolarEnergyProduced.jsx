@@ -8,17 +8,24 @@ const Mycharts = ({ nodeid, parameter }) => {
   const [date, setDate] = useState([]);
   useEffect(() => {
     var enddate = new Date();
-      var endstring=enddate.toISOString().substring(0,10)
-      var startdate=new Date(new Date().setDate(new Date().getDate()-7))
-      var startdatestring=startdate.toISOString().substring(0,10)
+    var endstring = enddate.toISOString().substring(0, 10);
+    var startdate = new Date(new Date().setDate(new Date().getDate() - 7));
+    var startdatestring = startdate.toISOString().substring(0, 10);
     const getData = async () => {
-      const url = `https://iudx-rs-onem2m.iiit.ac.in/ngsi-ld/v1/temporal/entities?id=research.iiit.ac.in/4786f10afbf48ed5c8c7be9b4d38b33ca16c1d9a/iudx-rs-onem2m.iiit.ac.in/iiith-solar-panel/${nodeid}&limit=500&time=${startdatestring}T17:50:00Z&timerel=during&endtime=${endstring}T17:50:00Z`;
+      const url = `https://iudx-rs-onem2m.iiit.ac.in/ngsi-ld/v1/temporal/entities?id=research.iiit.ac.in/4786f10afbf48ed5c8c7be9b4d38b33ca16c1d9a/iudx-rs-onem2m.iiit.ac.in/iiith-solar-panel/${nodeid}&limit=100&time=${startdatestring}T17:50:00Z&timerel=during&endtime=${endstring}T17:50:00Z`;
       try {
         const response = await fetch(url);
         const data = await response.json();
         console.log(data["results"]);
-        setParam(data["results"]?.map((item) => item[parameter]["instValue"]));
+        setParam(
+          data["results"]?.map((item) =>
+            item[parameter]["instValue"] != NaN
+              ? item[parameter]["instValue"]
+              : 0
+          )
+        );
         setDate(data["results"]?.map((item) => item.Timestamp.split("T")[0]));
+        console.log(param.length === date.length);
       } catch (error) {
         console.log(error);
       }
@@ -33,7 +40,7 @@ const Mycharts = ({ nodeid, parameter }) => {
   ];
   const options = {
     chart: { id: "bar-chart" },
-    colors:['#b84644'],
+    colors: ["#b84644"],
     xaxis: {
       categories: date.reverse(),
     },
