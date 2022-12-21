@@ -21,7 +21,7 @@ const Mycharts = ({ nodeid, parameter }) => {
             ? setParam(data["results"]?.map((item) => item.airQualityIndex))
             : setParam(
                 data["results"]?.map((item) =>
-                  item[parameter]["instValue"] != NaN
+                  item[parameter]["instValue"] !== NaN
                     ? item[parameter]["instValue"]
                     : 0
                 )

@@ -20,7 +20,7 @@ const Mycharts = ({ nodeid, parameter }) => {
         console.log(data["results"]);
         setParam(
           data["results"]?.map((item) =>
-            item[parameter]["instValue"] != NaN
+            item[parameter]["instValue"] !== NaN
               ? item[parameter]["instValue"]
               : 0
           )
