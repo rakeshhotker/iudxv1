@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+    iudxdashboard:
+        image: registry.gitlab.com/scrc-iiit/iudx-dashboard/iudxdashboard
+        networks:
+            - nginx-proxy-server
+        restart: always
+
+networks:
+    nginx-proxy-server:
+        external: true
